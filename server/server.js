@@ -8,13 +8,13 @@ const Main_Routes = require('./Routes/Main')
 const Admin_Routes = require('./Routes/Admin')
 const User_Routes = require('./Routes/User')
 const {isuser,isadmin} =require('./Models/check')
-const ejs =require('ejs') 
+
 var cookieSession = require('cookie-session')
 const morgan =require('morgan')
 const bodyParser = require('body-parser')
 app.set('trust proxy', 1)
 app.set('view engine', 'html');
-app.engine('html', ejs.renderFile);
+
 const {Server} = require('socket.io')
 // app.use(cors())
 
