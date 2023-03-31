@@ -5,9 +5,9 @@ import { useState, useEffect, useReducer } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
 import Historydetail from './Historydetail'
-import axios from '../../models/getapi';
+import axios from 'axios';
 function Cart() {
-    let gethistory = () => axios.get(`/user/history`).then((res) => res.data)
+    let gethistory = () => axios.get(`/api/user/history`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['history'], gethistory, {})
     const [showdetail,setshowdetail] = useState(false)
     const[cart,setcart] = useState(null)

@@ -6,11 +6,11 @@ import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/
 import { useQuery, useQueries } from 'react-query'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import Changepass from './Changepass'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 function Cart() {
     const navigate = useNavigate()
-    let getauthen = () => axios.get(`/authentication`).then((res) => res.data)
+    let getauthen = () => axios.get(`/api/authentication`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['authentication'], getauthen, {})
     let [user, setuser] = useState(data)
     let [show,setshow] = useState(false)
@@ -20,7 +20,7 @@ function Cart() {
     }
     const updateprofile = async( e)=>{
         e.preventDefault()
-        let result = await axios.post(`/user/updateprofile`,user)
+        let result = await axios.post(`/api/user/updateprofile`,user)
         console.log(result)
         if(result.data.isSuccess){
             navigate("/home")

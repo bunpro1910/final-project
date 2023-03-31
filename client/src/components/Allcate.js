@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import axios from '../models/getapi';
+import axios from 'axios';
 import io from 'socket.io-client';
 import { useQuery, useQueries } from 'react-query';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -8,7 +8,7 @@ import Product from './Product';
 import Productcard from './Productcard';
 
 function Idea() {
-    let getproduct = () => axios.get(`/productbycate`).then((res) => res.data)
+    let getproduct = () => axios.get(`/api/productbycate`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['productbycate'], getproduct, {})
     useEffect(() => {
         // add any useEffect code here

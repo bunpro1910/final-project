@@ -3,7 +3,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { ReactNotifications, Store } from 'react-notifications-component'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import { toast } from 'react-toastify'
 
 function Login() {
@@ -23,7 +23,7 @@ function Login() {
   let [err, seterr] = useState(false)
   let submit_handle = async (e) => {
     e.preventDefault()
-    let { data } = await axios.post(`/register`, { form: form })
+    let { data } = await axios.post(`/api/register`, { form: form })
     if (data.isSucess) {
       toast.success(data.message)
       navigate('/home')

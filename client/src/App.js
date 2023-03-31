@@ -29,10 +29,10 @@ import Brand from './components/Admin/Brand'
 import Addbrand from'./components/Admin/Addbrand'
 import {ToastContainer} from'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import axios from './models/getapi';
+import axios from 'axios';
 function App() {
   const socketRef = useRef();
-  let getuser =()=> axios.get(`/authentication`,).then((res) => res.data)
+  let getuser =()=> axios.get(`/api/authentication`,).then((res) => res.data)
   const { isLoading, error, data, isFetching,refetch  } = useQuery('authentication',getuser,{ staleTime: Infinity, cacheTime: Infinity })
 
 

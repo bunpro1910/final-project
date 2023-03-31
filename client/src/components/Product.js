@@ -1,7 +1,7 @@
 
 import { Link, useLocation ,useNavigate} from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from '../models/getapi';
+import axios from 'axios';;
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -19,14 +19,14 @@ function Idea( {id} ) {
     console.log(id)
 
     let navigate =useNavigate()
-    let getproduct = () => axios.get(`/product?${id.cateid?`cateid=`+id.cateid:""}${id.search?`&search=`+id.search:""}`).then((res) => res.data)
+    let getproduct = () => axios.get(`/api/product?${id.cateid?`cateid=`+id.cateid:""}${id.search?`&search=`+id.search:""}`).then((res) => res.data)
     const socketRef = useRef();
     const { isLoading, error, data, isFetching, refetch } = useQuery(['product', id.cateid,id.search], getproduct, {})
     const [product,setproduct ] =useState({id:"",quantity:1})
     let addCart = (productid)=> async(e)=>{
         product.id = productid
         setproduct({...product})
-        let result = await axios.post(`/user/addcart`,{product:product})
+        let result = await axios.post(`/api/user/addcart`,{product:product})
         
         if(result.data.isSuccess) {
             navigate("/cart")

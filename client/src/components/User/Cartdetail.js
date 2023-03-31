@@ -4,11 +4,11 @@ import { Link, Outlet } from 'react-router-dom'
 import { useState, useEffect, useReducer } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
-import axios from '../../models/getapi';
+import axios from 'axios';
 function Cart({product,setProduct}) {
     
     let [quantity, setquantity] = useState(0)
-    let getcart = () => axios.get(`/user/cart`).then((res) => res.data)
+    let getcart = () => axios.get(`/api/user/cart`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['cart'], getcart, {})
 
     let [total, settotal] = useState(0)

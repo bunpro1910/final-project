@@ -3,7 +3,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { ReactNotifications, Store } from 'react-notifications-component'
-import axios from '../models/getapi'
+import axios from 'axios'
 import Forgetpassword from'./Forgetpassword'
 import { toast } from 'react-toastify'
 function Login() {
@@ -14,7 +14,7 @@ function Login() {
 
   let submit_handle = async (e) => {
     e.preventDefault()
-    let { data } = await axios.post(`/authentication`, { username: username, password: password })
+    let { data } = await axios.post(`/api/authentication`, { username: username, password: password })
     if (data.isSuccess) {
       toast.success(data.message)
       navigate('/home')

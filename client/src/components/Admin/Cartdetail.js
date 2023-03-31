@@ -4,21 +4,21 @@ import { Link, Outlet,useParams} from 'react-router-dom'
 import { useState, useEffect, useReducer } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 function Cart() {
     let params =useParams()
     let [quantity, setquantity] = useState(0)
-    let getcart = () => axios.get(`/admin/cartdetail`,{params:{id:params.id}}).then((res) => res.data)
+    let getcart = () => axios.get(`/api/admin/cartdetail`,{params:{id:params.id}}).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['cart'], getcart, {})
     let [total, settotal] = useState(0)
     let handle_delete = (proid, cartid) => async (e) => {
-        let result = await axios.post(`/user/deletecart`, { proid: proid, cartid: cartid })
+        let result = await axios.post(`/api/user/deletecart`, { proid: proid, cartid: cartid })
         console.log(result)
         refetch()
     }
     const updatecart = (proid, cartid, type) => async (e) => {
-        let result = await axios.post(`/user/updatecart`, { proid: proid, cartid: cartid, type: type })
+        let result = await axios.post(`/api/user/updatecart`, { proid: proid, cartid: cartid, type: type })
       
         if (result.data.isSuccess) {
             toast.success(result.data.message)

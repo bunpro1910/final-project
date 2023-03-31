@@ -8,7 +8,7 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import { io } from 'socket.io-client'
 import { useQuery } from 'react-query'
 import {toast} from 'react-toastify'
-import axios from '../models/getapi';
+import axios from 'axios';
 function Navbar() {
   let navigate = useNavigate()
   console.log(navigate)
@@ -16,13 +16,13 @@ function Navbar() {
   const logout = async(e) => {
 
 
-    let result = await axios.get('/logout')
+    let result = await axios.get('/api/logout')
     toast.success('Log out successfully')
     navigate("/login", { replace: true })
 
   }
   const socketRef = useRef();
-  let getuser = () => axios.get(`/authentication`).then((res) => res.data)
+  let getuser = () => axios.get(`/api/authentication`).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 

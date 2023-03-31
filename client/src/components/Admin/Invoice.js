@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 
@@ -24,7 +24,7 @@ function Invoice() {
     s_status: ''
   })
 
-  let getinvoice = () => axios.get(`/admin/invoice`, { params: { s_id: search.s_id, s_userid: search.s_userid, s_customer: search.s_customer, s_email: search.s_email, s_phonenumber: search.s_phonenumber, s_cartid: search.s_cartid, s_status: search.s_status } }).then((res) => res.data)
+  let getinvoice = () => axios.get(`/api/admin/invoice`, { params: { s_id: search.s_id, s_userid: search.s_userid, s_customer: search.s_customer, s_email: search.s_email, s_phonenumber: search.s_phonenumber, s_cartid: search.s_cartid, s_status: search.s_status } }).then((res) => res.data)
   const [show, setshow] = useState(false)
   const [showsearch, setshowsearch] = useState(false)
   const [showdetail, setshowdetail] = useState(false)
@@ -57,7 +57,7 @@ function Invoice() {
     setshowsearch(false);
   }
   const handleChangeStatus = (inv, status) => async (e) => {
-    let result = await axios.post(`/admin/changestatus`, { id: inv.id, status: status })
+    let result = await axios.post(`/api/admin/changestatus`, { id: inv.id, status: status })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
     } else {
@@ -66,7 +66,7 @@ function Invoice() {
   }
   const handledelete = async (e) => {
     console.log(invoice.id)
-    let result = await axios.post(`/admin/deleteinvoice`, { id: invoice.id })
+    let result = await axios.post(`/api/admin/deleteinvoice`, { id: invoice.id })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
       setshow(false)

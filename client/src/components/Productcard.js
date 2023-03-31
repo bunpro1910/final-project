@@ -10,7 +10,7 @@ import Product from './Product';
 function Idea({product}) {
     let navigate =useNavigate()
     const navigateProductdetail =(proid)=>(e)=>{
-        navigate(`/productdetail/${proid}`)
+        navigate(`/api/productdetail/${proid}`)
     }
     useEffect(() => {
         // add any useEffect code here

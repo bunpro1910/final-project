@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from '../../models/getapi';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -18,7 +18,7 @@ function Login() {
   const [show,setshow] = useState(false)
   const navigate = useNavigate()
 
-  let getbrand =()=> axios.get(`/brand?id=${location.state.id}`).then((res) => res.data)
+  let getbrand =()=> axios.get(`/api/brand?id=${location.state.id}`).then((res) => res.data)
   
   const { isLoading , error , data , isFetching,refetch  } = useQuery(['brand',!location.state?"":location.state.id],getbrand,{ enabled:enable })
   const descriptionElementRef = useRef(null);
@@ -40,12 +40,12 @@ function Login() {
         e.preventDefault()
         let result 
         if(!enable){
-          result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:false})
+          result = await axios.post(`/api/admin/addbrand`,{brand:brand,isupdated:false})
         }else{
           if(brand.id == data.brand[0].id){
-            result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:true})
+            result = await axios.post(`/api/admin/addbrand`,{brand:brand,isupdated:true})
           }else{
-            result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:true,isupdatedid:true,oldid:data.brand[0].id})
+            result = await axios.post(`/api/admin/addbrand`,{brand:brand,isupdated:true,isupdatedid:true,oldid:data.brand[0].id})
         }    
         }
         if(result.data.isSuccess){

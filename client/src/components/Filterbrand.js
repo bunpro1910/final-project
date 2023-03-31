@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from '../models/getapi';
+import axios from 'axios';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -19,7 +19,7 @@ function Idea({filter,setFilter}) {
     
 
 
-    let getcategory = () => axios.get(`/brand`).then((res) => res.data)
+    let getcategory = () => axios.get(`/api/brand`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery('brand', getcategory, { staleTime: Infinity, cacheTime: Infinity })
     if(isLoading){return<>...loading</>}
     return (

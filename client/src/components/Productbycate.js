@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from '../models/getapi';
+import axios from 'axios';;
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -23,7 +23,7 @@ function Idea() {
         s_brandid:""
     })
     console.log(filter)
-    let getproduct = () => axios.get(`/product`,{params:{
+    let getproduct = () => axios.get(`/api/product`,{params:{
         s_catename:params.name,
         s_brandid :filter.s_brandid
     }}).then((res) => res.data)

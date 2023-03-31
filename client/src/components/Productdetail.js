@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useParams,useNavigate  } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from '../models/getapi';
+import axios from 'axios';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
@@ -10,13 +10,13 @@ import { toast } from 'react-toastify'
 function Idea() {
     let navigation = useNavigate()
     let params = useParams()
-    let getproduct = () => axios.get(`/productdetail?id=${params.id}`).then((res) => res.data)
+    let getproduct = () => axios.get(`/api/productdetail?id=${params.id}`).then((res) => res.data)
     const [product,setproduct ] =useState({id:"",quantity:1})
     const { isLoading, error, data, isFetching, refetch } = useQuery(['productdetail', params.id], getproduct, {})
     let addCart = async(e)=>{
         product.id = params.id
         setproduct({...product})
-        let result = await axios.post(`/user/addcart`,{product:product})
+        let result = await axios.post(`/api/user/addcart`,{product:product})
         console.log(result.data.isSuccess)
         if(result.data.isSuccess) {
             navigation("/cart")

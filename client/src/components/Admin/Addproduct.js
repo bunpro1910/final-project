@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import { useQuery, useQueries } from 'react-query'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -18,9 +18,9 @@ function Login() {
   const [enable, setenable] = useState(false)
   const [show, setshow] = useState(false)
   const navigate = useNavigate()
-  let getbrand = () => axios.get(`/brand`).then((res) => res.data)
-  let getcategory = () => axios.get(`/category`).then((res) => res.data)
-  let getproduct = () => axios.get(`/product?id=${location.state.id}`).then((res) => res.data)
+  let getbrand = () => axios.get(`/api/brand`).then((res) => res.data)
+  let getcategory = () => axios.get(`/api/category`).then((res) => res.data)
+  let getproduct = () => axios.get(`/api/product?id=${location.state.id}`).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery('category', getcategory, {})
   const { isLoading: isloadingproduct, error: errorproduct, data: dataproduct, isFetching: isfetchingproduct, refetch: refetchproduct } = useQuery(['product', !location.state ? "" : location.state.id], getproduct)
   const { isLoading: isloadingbrand, error: errorbrand, data: brands, isFetching: isfetchingbrand, refetch: refetchbrand } = useQuery(['brand'], getbrand, {})
@@ -59,7 +59,7 @@ function Login() {
 
     if (!location.state?.id) {
       productform.append('isupdated', false)
-      result = await axios.post(`/admin/addproduct`, productform, {
+      result = await axios.post(`/api/admin/addproduct`, productform, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -67,7 +67,7 @@ function Login() {
     } else {
       if (product.id == dataproduct.product[0].id) {
         productform.append('isupdated', true)
-        result = await axios.post(`/admin/addproduct`, productform, {
+        result = await axios.post(`/api/admin/addproduct`, productform, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -76,7 +76,7 @@ function Login() {
         productform.append('isupdated', true)
         productform.append('isupdatedid', true)
         productform.append('oldid', dataproduct.product[0].id)
-        result = await axios.post(`/admin/addproduct`, productform, {
+        result = await axios.post(`/api/admin/addproduct`, productform, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from '../../models/getapi';
+import axios from 'axios';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { TbBrandProducthunt } from 'react-icons/tb'
@@ -22,7 +22,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function Category() {
   const totalmonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   let [month,setmonth] = useState(new Date().getMonth())
-  let getproduct = () => axios.get(`/admin/datainvoice?month=${month}`).then((res) => res.data)
+  let getproduct = () => axios.get(`/api/admin/datainvoice?month=${month}`).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery(['datainvoice',month], getproduct)
 
   let navigate= useNavigate()

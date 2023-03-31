@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from '../../models/getapi';
+import axios from 'axios'
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 
@@ -17,7 +17,7 @@ function Category() {
 
   let [search, setsearch] = useState({ s_id: '', s_name: '' })
 
-  let getaccount = () => axios.get(`/admin/account?s_id=${search.s_id}&s_name=${search.s_name}`).then((res) => res.data)
+  let getaccount = () => axios.get(`/api/admin/account?s_id=${search.s_id}&s_name=${search.s_name}`).then((res) => res.data)
   const [show, setshow] = useState(false)
   const [showsearch, setshowsearch] = useState(false)
   const socketRef = useRef();
@@ -43,7 +43,7 @@ function Category() {
     setshowsearch(false);
   }
   const handledelete = async (e) => {
-    let result = await axios.post(`/admin/deletecate`, { id: account.username })
+    let result = await axios.post(`/api/admin/deletecate`, { id: account.username })
     if(result.data.isSuccess){
       toast.success(result.data.message)
       setshow(false)
