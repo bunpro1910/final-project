@@ -6,7 +6,7 @@ import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/
 import { useQuery, useQueries } from 'react-query'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import Changepass from './Changepass'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import { toast } from 'react-toastify';
 function Cart() {
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ function Cart() {
     }
     const updateprofile = async( e)=>{
         e.preventDefault()
-        let result = await axios.post('/user/updateprofile',user)
+        let result = await axios.post(`/user/updateprofile`,user)
         console.log(result)
         if(result.data.isSuccess){
             navigate("/home")

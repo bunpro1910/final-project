@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 
@@ -44,7 +44,7 @@ function Brand() {
     setshowsearch(false);
   }
   const handledelete = async (e) => {
-    let result = await axios.post('/admin/deletebrand', { id: brand.id })
+    let result = await axios.post(`/admin/deletebrand`, { id: brand.id })
     if (result.data.isSuccess) {
       if(result.data.isSuccess){
         toast.success(result.data.message)
@@ -56,7 +56,7 @@ function Brand() {
   }
   useEffect(() => {
 
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('deletecate', (args) => {
       refetch()
     })

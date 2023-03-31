@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from 'axios'
+import axios from '../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -23,7 +23,7 @@ function Idea() {
   const { isLoading, error, data, isFetching, refetch } = useQuery('category', getcategory, { staleTime: Infinity, cacheTime: Infinity })
   const descriptionElementRef = useRef(null);
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('newcategory', (args) => {
     })
 

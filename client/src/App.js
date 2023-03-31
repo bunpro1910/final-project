@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import {useRef,useEffect}from 'react'
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-import axios from 'axios';
+
 import {io} from 'socket.io-client'
 import {useQuery}from 'react-query'
 import Home from './components/Home';
@@ -29,15 +29,16 @@ import Brand from './components/Admin/Brand'
 import Addbrand from'./components/Admin/Addbrand'
 import {ToastContainer} from'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import axios from './models/getapi';
 function App() {
   const socketRef = useRef();
-  let getuser =()=> axios.get("/authentication").then((res) => res.data)
+  let getuser =()=> axios.get(`/authentication`,).then((res) => res.data)
   const { isLoading, error, data, isFetching,refetch  } = useQuery('authentication',getuser,{ staleTime: Infinity, cacheTime: Infinity })
 
 
   useEffect( ()=>{
     
-    socketRef.current =io.connect('http://localhost:3001')
+    socketRef.current =io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('authentication',(args)=>{
       refetch()
     })

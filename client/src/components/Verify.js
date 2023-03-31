@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { AiOutlineLike } from 'react-icons/ai';
 import Dialog from '@mui/material/Dialog';
-import axios from'axios'
+import axios from '../models/getapi';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -15,7 +15,7 @@ function Footer() {
     let [message,setmessage] = useState()
     const handleSubmit =async (e)=>{
         e.preventDefault();
-        let result = await axios.post('/verify',{form:form})
+        let result = await axios.post(`/verify`,{form:form})
         setmessage(<p className={result.data.isSuccess?"success":"err"}> {result.data.message} </p>)  
     }
 

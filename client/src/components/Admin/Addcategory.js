@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from 'axios'
+import axios from '../../models/getapi';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -40,12 +40,12 @@ function Login() {
         e.preventDefault()
         let result 
         if(!enable){
-          result = await axios.post('/admin/addcategory',{category:category,isupdated:false})
+          result = await axios.post(`/admin/addcategory`,{category:category,isupdated:false})
         }else{
           if(category.id == data.category[0].id){
-            result = await axios.post('/admin/addcategory',{category:category,isupdated:true})
+            result = await axios.post(`/admin/addcategory`,{category:category,isupdated:true})
           }else{
-            result = await axios.post('/admin/addcategory',{category:category,isupdated:true,isupdatedid:true,oldid:data.category[0].id})
+            result = await axios.post(`/admin/addcategory`,{category:category,isupdated:true,isupdatedid:true,oldid:data.category[0].id})
           }
           
         }

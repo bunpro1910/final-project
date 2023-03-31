@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { AiOutlineLike } from 'react-icons/ai';
 import Dialog from '@mui/material/Dialog';
-import axios from 'axios'
+import axios from '../models/getapi';
 import { ReactNotifications, Store } from 'react-notifications-component'
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -17,7 +17,7 @@ function Footer({ showforget, setshowforget }) {
    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let result = await axios.post('/forgetpass', { form: form })
+        let result = await axios.post(`/forgetpass`, { form: form })
             if(result.data.isSuccess){
                 toast.success(result.data.message)
             }else{

@@ -2,12 +2,13 @@ import { FaHome, FaEye, FaUpload, FaFolder } from "react-icons/fa";
 import { useRef, useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
-import axios from 'axios'
+
 import Footer from './Footer';
 import { ReactNotifications, Store } from 'react-notifications-component'
 import { io } from 'socket.io-client'
 import { useQuery } from 'react-query'
 import {toast} from 'react-toastify'
+import axios from '../models/getapi';
 function Navbar() {
   let navigate = useNavigate()
   console.log(navigate)
@@ -21,11 +22,11 @@ function Navbar() {
 
   }
   const socketRef = useRef();
-  let getuser = () => axios.get("/authentication").then((res) => res.data)
+  let getuser = () => axios.get(`/authentication`).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('authentication', (args) => {
       refetch()
     })

@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useState, useEffect, useReducer } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
-import axios from 'axios'
+import axios from '../../models/getapi';
 function Cart({product,setProduct}) {
     
     let [quantity, setquantity] = useState(0)
@@ -33,7 +33,7 @@ function Cart({product,setProduct}) {
                        <>
                         <li class="list-group-item d-flex justify-between lh-condensed">
                             <div className='flex'>
-                            <img className='w-10 mr-10' src={item.image} alt=""/>
+                            <img className='w-10 mr-10' src={process.env.REACT_APP_API_ENDPOINT+item.image} alt=""/>
                                 <div>
                                 <h6 class="my-0">{item.name}</h6>
                                 <small class="text-muted">{item.orderquantity}</small>

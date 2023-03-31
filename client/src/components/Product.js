@@ -1,7 +1,7 @@
 
 import { Link, useLocation ,useNavigate} from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import axios from '../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -26,7 +26,7 @@ function Idea( {id} ) {
     let addCart = (productid)=> async(e)=>{
         product.id = productid
         setproduct({...product})
-        let result = await axios.post('/user/addcart',{product:product})
+        let result = await axios.post(`/user/addcart`,{product:product})
         
         if(result.data.isSuccess) {
             navigate("/cart")
@@ -37,7 +37,7 @@ function Idea( {id} ) {
         
     }
     useEffect(() => {
-        socketRef.current = io.connect('http://localhost:3001')
+        socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
         socketRef.current.on('reloadproduct', (args) => {
             refetch()
         })
@@ -56,7 +56,7 @@ function Idea( {id} ) {
                     {data.product.map((pro, i) => {
                         return (
                             <div class="card" style={{ width: 18 + "rem", margin: 18 + 'px' }} onClick={(e)=>{navigate(`/productdetail/${pro.id}`,{state:{id:pro.id}})}}>
-                                <img src={pro.image} class="card-img-top" alt="..." />
+                                <img src={process.env.REACT_APP_API_ENDPOINT+pro.image} class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title">{pro.name}</h5>
                                     <p class="card-text">{pro.description}</p>

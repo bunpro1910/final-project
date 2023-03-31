@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { TbBrandProducthunt } from 'react-icons/tb'
@@ -34,7 +34,7 @@ function Category() {
   if (isLoading) {
     return <>...loading</>
   }
-
+  console.log(data)
   const datachart = {
     labels: [' Error', ' Success', ' Waiting'],
     datasets: [

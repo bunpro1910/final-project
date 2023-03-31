@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <>
-      <ReactNotifications />
+
       <Silde/>
       <Container/>
       <Allcate/>

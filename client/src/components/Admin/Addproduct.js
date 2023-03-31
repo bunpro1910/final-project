@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import { useQuery, useQueries } from 'react-query'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -59,7 +59,7 @@ function Login() {
 
     if (!location.state?.id) {
       productform.append('isupdated', false)
-      result = await axios.post('/admin/addproduct', productform, {
+      result = await axios.post(`/admin/addproduct`, productform, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -67,7 +67,7 @@ function Login() {
     } else {
       if (product.id == dataproduct.product[0].id) {
         productform.append('isupdated', true)
-        result = await axios.post('/admin/addproduct', productform, {
+        result = await axios.post(`/admin/addproduct`, productform, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -76,7 +76,7 @@ function Login() {
         productform.append('isupdated', true)
         productform.append('isupdatedid', true)
         productform.append('oldid', dataproduct.product[0].id)
-        result = await axios.post('/admin/addproduct', productform, {
+        result = await axios.post(`/admin/addproduct`, productform, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

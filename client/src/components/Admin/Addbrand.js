@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from 'axios'
+import axios from '../../models/getapi';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -40,12 +40,12 @@ function Login() {
         e.preventDefault()
         let result 
         if(!enable){
-          result = await axios.post('/admin/addbrand',{brand:brand,isupdated:false})
+          result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:false})
         }else{
           if(brand.id == data.brand[0].id){
-            result = await axios.post('/admin/addbrand',{brand:brand,isupdated:true})
+            result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:true})
           }else{
-            result = await axios.post('/admin/addbrand',{brand:brand,isupdated:true,isupdatedid:true,oldid:data.brand[0].id})
+            result = await axios.post(`/admin/addbrand`,{brand:brand,isupdated:true,isupdatedid:true,oldid:data.brand[0].id})
         }    
         }
         if(result.data.isSuccess){

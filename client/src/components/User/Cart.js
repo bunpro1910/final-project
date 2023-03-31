@@ -5,7 +5,7 @@ import { useState, useEffect, useReducer } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
 import { ReactNotifications, Store } from 'react-notifications-component'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import { toast } from 'react-toastify';
 function Cart() {
     let [quantity, setquantity] = useState(0)
@@ -13,7 +13,7 @@ function Cart() {
     const { isLoading, error, data, isFetching, refetch } = useQuery(['cart'], getcart, {})
     let [total, settotal] = useState(0)
     let handle_delete = (proid, cartid) => async (e) => {
-        let result = await axios.post('/user/deletecart', { proid: proid, cartid: cartid })
+        let result = await axios.post(`/user/deletecart`, { proid: proid, cartid: cartid })
         if (result.data.isSuccess) {
             refetch()
             toast.success(result.data.message)
@@ -22,7 +22,7 @@ function Cart() {
         }
     }
     const updatecart = (proid, cartid, type) => async (e) => {
-        let result = await axios.post('/user/updatecart', { proid: proid, cartid: cartid, type: type })
+        let result = await axios.post(`/user/updatecart`, { proid: proid, cartid: cartid, type: type })
         console.log(result)
         if (result.data.isSuccess) {
             toast.success(result.data.message)
@@ -59,7 +59,7 @@ function Cart() {
                         return (
                             <tr>
                                 <th scope="row">{i + 1}</th>
-                                <td><img style={{ maxWidth: 100 + "px" }} src={item.image} alt="" /></td>
+                                <td><img style={{ maxWidth: 100 + "px" }} src={process.env.REACT_APP_API_ENDPOINT+item.image} alt="" /></td>
                                 <td>{item.name}</td>
                                 <td>{item.quantity}</td>
                                 <td>{item.price} VND</td>

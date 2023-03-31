@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import axios from '../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';

@@ -5,7 +5,7 @@ import { useState, useEffect, useReducer, Redirect } from 'react'
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 import { useQuery, useQueries } from 'react-query'
 import Cartdetail from './Cartdetail'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import { toast } from 'react-toastify';
 function Cart() {
     let navigate = useNavigate()
@@ -22,7 +22,7 @@ function Cart() {
             //accounttest paypal
             //username sb-9g7hi25402313@personal.example.com
             //pass n0H1}N-1
-            const response = await axios.post('/user/payal', { product: product, amount: 0, description: "pay for nothing" });
+            const response = await axios.post(`/user/payal`, { product: product, amount: 0, description: "pay for nothing" });
 
             window.location.replace(response.data.link)
 
@@ -32,7 +32,7 @@ function Cart() {
     };
     let handlesubmit = async (e) => {
         e.preventDefault();
-        let result = await axios.post('/user/checkout', { fullname: user.fullname, email: user.gmail, date: new Date(), phone_number: user.phone_number, address: address + ", " + ward + ", " + district + ", " + city })
+        let result = await axios.post(`/user/checkout`, { fullname: user.fullname, email: user.gmail, date: new Date(), phone_number: user.phone_number, address: address + ", " + ward + ", " + district + ", " + city })
         if (result.data.isSuccess) {
             toast.success(result.data.message)
             navigate('/history')

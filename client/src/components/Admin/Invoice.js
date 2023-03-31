@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 
@@ -57,7 +57,7 @@ function Invoice() {
     setshowsearch(false);
   }
   const handleChangeStatus = (inv, status) => async (e) => {
-    let result = await axios.post('/admin/changestatus', { id: inv.id, status: status })
+    let result = await axios.post(`/admin/changestatus`, { id: inv.id, status: status })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
     } else {
@@ -66,7 +66,7 @@ function Invoice() {
   }
   const handledelete = async (e) => {
     console.log(invoice.id)
-    let result = await axios.post('/admin/deleteinvoice', { id: invoice.id })
+    let result = await axios.post(`/admin/deleteinvoice`, { id: invoice.id })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
       setshow(false)
@@ -76,7 +76,7 @@ function Invoice() {
   }
   useEffect(() => {
 
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('updatestatus', (args) => {
       refetch()
     })

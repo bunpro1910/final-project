@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect, useRef, } from 'react'
-import axios from 'axios'
+import axios from '../../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
@@ -57,7 +57,7 @@ function Category() {
     setshow(false);
   };
   const handledelete = async (e) => {
-    let result = await axios.post('/admin/deletepro', { id: product.id })
+    let result = await axios.post(`/admin/deletepro`, { id: product.id })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
       setshow(false)
@@ -75,7 +75,7 @@ function Category() {
         descriptionElement.focus();
       }
     }
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_ENDPOINT}`)
     socketRef.current.on('deletepro', (args) => {
       refetch()
     })
@@ -221,7 +221,7 @@ function Category() {
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
                     <td>{product.description}</td>
-                    <td><img src={product.image} alt="avatar" className='img-thumbnail product-image' /></td>
+                    <td><img src={process.env.REACT_APP_API_ENDPOINT+product.image} alt="avatar" className='img-thumbnail product-image' /></td>
                     <td><Link to='../addproduct' className='btn btn-primary' state={{ id: product.id }} >edit</Link></td>
                     <td><button className='btn btn-danger' onClick={handleClickOpen(product)}>Delete</button></td>
                   </tr>

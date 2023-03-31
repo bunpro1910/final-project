@@ -9,6 +9,7 @@ let isuser= (req,res, next)=>{
     res.json({err:"you don't have acess"})
 }
 let isadmin = (req,res, next)=>{
+    console.log(req.session)
     if(req.session.user){
         if(req.session.user.roleid ==2){
             next()

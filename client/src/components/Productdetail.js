@@ -1,7 +1,7 @@
 
 import { Link, useLocation, useParams,useNavigate  } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
+import axios from '../models/getapi';
 import io from 'socket.io-client'
 import { useQuery, useQueries } from 'react-query'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
@@ -16,7 +16,7 @@ function Idea() {
     let addCart = async(e)=>{
         product.id = params.id
         setproduct({...product})
-        let result = await axios.post('/user/addcart',{product:product})
+        let result = await axios.post(`/user/addcart`,{product:product})
         console.log(result.data.isSuccess)
         if(result.data.isSuccess) {
             navigation("/cart")
@@ -42,7 +42,7 @@ function Idea() {
                     
 
                     <div class="col-md-6 mb-4"style={{textAlign:"center"}}>
-                        <img style ={{maxWidth:300+"px"}} src={data.product[0].image} class="img-fluid" alt="" />
+                        <img style ={{maxWidth:300+"px"}} src={process.env.REACT_APP_API_ENDPOINT+data.product[0].image} class="img-fluid" alt="" />
                     </div>
                     <div class="col-md-6 mb-4">
 
