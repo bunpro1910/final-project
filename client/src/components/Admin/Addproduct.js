@@ -132,8 +132,6 @@ function Login() {
 
   if (isLoading) return (<>...loading</>)
   if (isloadingbrand) return (<>...loading</>)
-  console.log(dataproduct.product[0].brandid)
-  console.log(product.brandid)
   return (
     <>
       <ReactNotifications />
