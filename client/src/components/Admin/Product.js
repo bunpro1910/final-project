@@ -57,7 +57,7 @@ function Category() {
     setshow(false);
   };
   const handledelete = async (e) => {
-    let result = await axios.post(`/admin/deletepro`, { id: product.id })
+    let result = await axios.post(`/api/admin/deletepro`, { id: product.id })
     if (result.data.isSuccess) {
       toast.success(result.data.message)
       setshow(false)
