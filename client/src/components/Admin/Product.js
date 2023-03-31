@@ -29,7 +29,7 @@ function Category() {
   const socketRef = useRef();
 
   const [showsearch, setshowsearch] = useState(false)
-  let getproduct = () => axios.get(`/product`, { params: search }).then((res) => res.data)
+  let getproduct = () => axios.get(`/api/product`, { params: search }).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery(['product'], getproduct, { enabled: !showsearch })
   const [product, setproduct] = useState('')
   const handleClickOpenSearch = (e) => {
