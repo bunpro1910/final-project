@@ -20,9 +20,9 @@ function Login() {
   const navigate = useNavigate()
   let getbrand = () => axios.get(`/api/brand`).then((res) => res.data)
   let getcategory = () => axios.get(`/api/category`).then((res) => res.data)
-  let getproduct = () => axios.get(`/api/product?id=${location.state.id}`).then((res) => res.data)
+  let getproduct = () => axios.get(`/api/product?id=${location.state?.id}`).then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch } = useQuery('category', getcategory, {})
-  const { isLoading: isloadingproduct, error: errorproduct, data: dataproduct, isFetching: isfetchingproduct, refetch: refetchproduct } = useQuery(['product', !location.state ? "" : location.state.id], getproduct)
+  const { isLoading: isloadingproduct, error: errorproduct, data: dataproduct, isFetching: isfetchingproduct, refetch: refetchproduct } = useQuery(['product', !location.state ? "" : location.state?.id], getproduct,{ enabled:enable })
   const { isLoading: isloadingbrand, error: errorbrand, data: brands, isFetching: isfetchingbrand, refetch: refetchbrand } = useQuery(['brand'], getbrand, {})
   const descriptionElementRef = useRef(null);
   let [product, setproduct] = useState(
