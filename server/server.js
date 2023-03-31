@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'https://client-shop.onrender.com');
-
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -56,13 +56,13 @@ app.use(function (req, res, next) {
 
 
 
-app.use("/",Main_Routes)
+app.use("/api/",Main_Routes)
 
-app.use("/admin",isadmin,Admin_Routes)
-app.use("/user",isuser,User_Routes)
+app.use("/api/admin",isadmin,Admin_Routes)
+app.use("/api/user",isuser,User_Routes)
 var server = require('http').Server(app)
 global.io = new Server(server,{cors: {
-    origin: 'https://client-shop.onrender.com',
+    origin: ['https://client-shop.onrender.com','http://localhost:3000'],
 }});
 
 
