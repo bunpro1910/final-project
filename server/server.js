@@ -26,7 +26,8 @@ app.use('/public',express.static((__dirname+ '/public')))
 app.use(cookieSession({
     name: 'session',
     keys: ["phamlehaison"],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    httpOnly:false
   }))
 
 
