@@ -1,0 +1,328 @@
+.btn-logout {
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.btn-logout:hover {
+  color: red !important
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+
+}
+
+.login {
+  margin-top: 50px;
+  padding: 30px 50px;
+  width: 60%;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  border-radius: 15px
+}
+
+.input {
+  width: 60%;
+}
+
+.btn-login {
+  margin-top: 10px;
+}
+
+.carousel-item {
+  height: 50vh;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.footer-cta {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+.price {
+  color: #263238;
+  font-size: 24px;
+}
+
+.card-title {
+  color: #263238
+}
+
+.sale {
+  color: #E53935
+}
+
+.sale-badge {
+  background-color: #E53935
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.form-check {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-image {
+  max-width: 100px
+}
+.card-img-top{
+padding-top:10px;
+border-radius: 5%;
+}
+.total-bar{
+  display: flex;
+  width:100%;
+  justify-content: end;
+  padding: 20px;
+}
+.total-title{
+  margin-right:60px;
+  font-size: 25px;
+}
+.total-value{
+  font-size:25px;
+  margin-right: 40px;
+}
+.btn-changequanti{
+
+  border-radius:45px;
+  font-size: 20px;
+  border:none;
+  background : none;
+  padding-bottom:5px
+}
+.btn-up{
+  margin-left: 20px;
+  color:green;
+
+}
+.btn-up{
+  margin-left: 20px;
+  color:green;
+
+}
+.btn-up:hover{
+  background-color:green;
+  color:white
+
+}
+.btn-down{
+  margin-left: 10px;
+  color:red;
+  
+}
+.btn-down:hover{
+  
+  background-color:red;
+  color:white
+}
+.form-billing{
+  width: 60%;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article p{
+   padding: 14px;
+   color: #333;
+}
+article p{
+   font-size: 15px;
+    line-height: 1.5;
+}
+ 
+@media only screen and (min-width: 1280px){
+    main{
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto; 
+      padding: 24px;
+    }
+
+
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+	cursor: pointer;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 15px;
+	color: #333;
+	font-size: 16px;
+}
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+	font-size: 18pt;
+	position: relative;
+	float: right;
+}
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+	content: "\f204";
+	transition: .6s;
+}
+
+.to-active:after {
+	content: "\f205";
+	color: #008080;
+	transition: .6s;
+}
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+	margin: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	border: 2px solid #f1f1f1;
+	box-sizing: border-box;
+}
+.processing{
+  background-color: yellow !important;
+  color:black
+}
+.complete{
+  background-color: green !important;
+  color:white
+}
+.error{
+  background-color: red !important;
+  color:white
+}
+.btn-status{
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.btn-status:disabled{
+  padding:15px
+}
+
+
+.left-navbar{
+  border-radius: 15px;
+  background-color: #263238;
+  width: 350px;
+  display:flex;
+  position: relative;
+  height: auto;
+  margin-right: 30px;
+  box-shadow: 1px 1px #eee;
+
+}
+.content{
+
+  width:70%;
+  height:auto;
+  display:flex;
+  padding:20px;
+  background-color: #eee;
+  box-shadow: 2px 2px 2px 2px #cbc8c8;
+  border-radius:25px;
+  flex-wrap: wrap;
+}
+.left-navbar ul{
+  width: 100%;
+  margin-top:40px;
+}
+
+.left-navbar ul li{
+ 
+
+  list-style: none;
+  width: 100%;
+  background-color: #5b637e;
+  border-radius:5px;
+
+  margin-bottom:10px;
+}
+.left-navbar ul:hover li{
+  opacity:0.3;
+}
+.left-navbar ul:hover > li:hover{
+  opacity:1;
+}
+
+
+.left-navbar ul li a{
+  display: inline-block;
+  width: 350px;
+  font-size:18px;
+  text-decoration: none;
+  color:white;
+
+  overflow: hidden;
+  margin-bottom:10px;
+  padding:10px;
+}
+.left-navbar ul li a i{
+  margin-right: 10px;
+  font-size:25px
+}
+.left-navbar ul li a:after{
+
+  content: "";
+  background: #eee;
+  padding-top: 11.5px;
+  padding-left: 100%;
+  margin-left: -200px!important;
+  padding-bottom: 20px;
+  padding-right: 100px;
+  opacity: 0;
+  transition: all 0.8s
+}
+.left-navbar ul li a:active:after{
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.content .item{
+  
+  max-width:48%;
+  margin: 10px;
+}
+.content .item:hover{
+
+}
+.err{
+  color:red
+}
+.success{
+  color:green
+}
+.width-1{
+  width: calc(100%/4) ;
+}
+.bg-image{
+  
+  background-image: url(https://static.vecteezy.com/system/resources/previews/001/849/553/original/modern-gold-background-free-vector.jpg);
+}
+.bg-image-1{
+ 
+  background-image: url(https://static-cse.canva.com/blob/572626/1.magebyRodionKutsaevviaUnsplash.jpg);
+}
+.bg-image-2{
+
+  background-image: url(https://www.freecodecamp.org/news/content/images/2021/06/w-qjCHPZbeXCQ-unsplash.jpg);
+}
+.bg-image-3{
+
+  background-image: url(https://media.istockphoto.com/id/1356565274/photo/modern-abstract-wavy-background.jpg?s=612x612&w=0&k=20&c=No67IAf0B1P6THxPiU2zI9zPVp6J6wEuf_8zEs3iHKw=);
+}
+.bg-tech{
+  background-image: url(https://static.vecteezy.com/system/resources/previews/002/202/047/original/blue-high-tech-futuristic-cyberspace-technology-background-free-vector.jpg);
+}

@@ -1,0 +1,41 @@
+{
+  "name": "school_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd.. && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bunpro1910/school_web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bunpro1910/school_web/issues"
+  },
+  "homepage": "https://github.com/bunpro1910/school_web#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cloudinary": "^1.34.0",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "nodejs-currency-converter": "^1.0.2",
+    "nodemailer": "^6.9.1",
+    "path": "^0.12.7",
+    "paypal-rest-sdk": "^1.8.1",
+    "randomstring": "^1.2.3",
+    "socket.io": "^4.6.0",
+    "tailwindcss": "^3.2.7",
+    "url": "^0.11.0"
+  }
+}
