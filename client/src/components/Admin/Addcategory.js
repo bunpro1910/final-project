@@ -22,7 +22,10 @@ function Login() {
   
   const { isLoading , error , data , isFetching,refetch  } = useQuery(['category',!location.state?"":location.state.id],getcategory,{ enabled:enable })
   const descriptionElementRef = useRef(null);
-  let [category,setcategory] = useState(data?{id:data.category[0].id,name:data.category[0].name}:
+  let [category,setcategory] = useState(
+    data?
+    {id:data.category[0].id,
+      name:data.category[0].name}:
       {
           id:'',
           name:'',

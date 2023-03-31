@@ -26,6 +26,16 @@ function Login() {
   const { isLoading: isloadingbrand, error: errorbrand, data: brands, isFetching: isfetchingbrand, refetch: refetchbrand } = useQuery(['brand'], getbrand, {})
   const descriptionElementRef = useRef(null);
   let [product, setproduct] = useState(
+    dataproduct?{
+      id : dataproduct.product[0].id,
+      name : dataproduct.product[0].name,
+      cateid : dataproduct.product[0].cateid,
+      price : dataproduct.product[0].price,
+      quantity : dataproduct.product[0].quantity,
+      image : dataproduct.product[0].image,
+      description : dataproduct.product[0].description,
+      brandid : dataproduct.product[0].brandid
+    }:
     {
       id: '',
       name: '',
@@ -101,18 +111,8 @@ function Login() {
   useEffect(() => {
     if (location.state) {
       if (location.state.id) {
-        if (dataproduct) {
-          product.id = dataproduct.product[0].id
-          product.name = dataproduct.product[0].name
-          product.cateid = dataproduct.product[0].cateid
-          product.price = dataproduct.product[0].price
-          product.quantity = dataproduct.product[0].quantity
-          product.image = dataproduct.product[0].image
-          product.description = dataproduct.product[0].description
-          product.brandid = dataproduct.product[0].brandid
-          setproduct({ ...product })
+        setenable(true)
 
-        }
       }
     }
     if (show) {
