@@ -10,7 +10,7 @@ const User_Routes = require('./Routes/User');
 const { isuser, isadmin } = require('./Models/check');
 
 var cookieSession = require('cookie-session');
-const morgan = require('morgan');
+
 const bodyParser = require('body-parser');
 
 app.set('trust proxy', 1);
@@ -33,7 +33,7 @@ app.use(cookieSession({
   httpOnly: false
 }));
 
-app.use(morgan('dev'));
+
 // app.use(function (req, res, next) {
 //   res.setHeader('Access-Control-Allow-Origin', 'https://client-shop.onrender.com');
 //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
