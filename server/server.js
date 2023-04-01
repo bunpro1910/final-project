@@ -63,7 +63,6 @@ app.use("/api/user",isuser,User_Routes)
 var server = require('https').Server(app)
 global.io = new Server(server,{cors: {
     origin: 'https://client-shop.onrender.com',
-    httpOnly:false,
 }});
 
 
