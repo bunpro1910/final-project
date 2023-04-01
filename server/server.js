@@ -60,9 +60,10 @@ app.use("/api/",Main_Routes)
 
 app.use("/api/admin",isadmin,Admin_Routes)
 app.use("/api/user",isuser,User_Routes)
-var server = require('http').Server(app)
+var server = require('https').Server(app)
 global.io = new Server(server,{cors: {
     origin: 'https://client-shop.onrender.com',
+    httpOnly:false,
 }});
 
 
