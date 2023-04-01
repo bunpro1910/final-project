@@ -22,7 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static((__dirname + '/public')));
-
+app.use(cors({
+    origin: 'https://client-shop.onrender.com',
+    credentials: true,
+}));
 app.use(cookieSession({
   name: 'session',
   keys: ["phamlehaison"],
@@ -31,13 +34,13 @@ app.use(cookieSession({
 }));
 
 app.use(morgan('dev'));
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://client-shop.onrender.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://client-shop.onrender.com');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 app.use("/api/", Main_Routes);
 
